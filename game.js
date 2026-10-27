@@ -32,7 +32,7 @@ export function attack(game, index) {
 
 export function roomStatus(game) {
   if (game.heroes.every(h => h.hp <= 0)) return 'defeat';
-  if (game.room > game.maxRooms) return 'victory';
+  if (game.room >= game.maxRooms && !game.deck.length && !game.enemies.length) return 'victory';
   if (!game.deck.length && !game.enemies.length) return 'reward';
   return 'battle';
 }
