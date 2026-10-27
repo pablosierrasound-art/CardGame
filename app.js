@@ -25,6 +25,7 @@ function render() {
     render();
     log(result.killed ? `${result.enemy.name} ha caído.` : `${result.hero.name} inflige ${result.hero.attack} de daño y recibe ${result.enemy.attack} de contraataque.`);
     if (roomStatus(game) === 'reward') log('Sala despejada. Elige una recompensa para continuar.');
+    if (roomStatus(game) === 'victory') log('Has vencido al último guardián. ¡La cripta es tuya!');
     if (game.heroes.every(h => h.hp <= 0)) log('Tu compañía ha caído. Inicia una nueva incursión.');
   });
 }
