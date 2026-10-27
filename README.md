@@ -1,21 +1,24 @@
-# UMBRÍA · Ecos de la cripta
+# UMBRÍA · Neon Invaders
 
-Prototipo de roguelike de cartas con estética dark fantasy vintage. HTML, CSS y JavaScript nativos; Node.js 24 para el servidor de desarrollo, sin dependencias de instalación.
+Arcade roguelike de naves inspirado en los videojuegos de los años 90. Diseñado para móvil vertical, sin scroll y sin dependencias.
 
-## Ejecutar
+## Jugar
 
-```sh
-npm start
-```
+Abre `index.html` en un navegador o visita https://pablosierrasound-art.github.io/CardGame/ cuando GitHub Pages esté desplegado.
 
-Puerto predeterminado: 3000; configurable mediante `PORT`. No necesita claves ni servicios externos. Las fuentes de Google son opcionales: dispone de fuentes locales de reserva.
+## Controles
 
-## Probar
+- Móvil: arrastra la nave sobre la pantalla o usa los botones inferiores.
+- Ordenador: flechas izquierda/derecha o A/D.
+- Disparo automático. Botón de pausa en la parte superior.
 
-```sh
-npm test
-```
+## Mecánicas
 
-Revela monstruos desde el mazo (hasta tres simultáneos). Selecciona uno de tus tres personajes y pulsa un monstruo para atacar. Si sobrevive, contraataca. Derrota a los seis monstruos para ganar; si pierdes a toda la compañía, inicia otra incursión. «Nueva incursión» restaura el estado y baraja el mazo.
+Oleadas infinitas, jefe cada cinco oleadas, puntuación, récord personal guardado en el navegador y elección de una de tres mejoras para la nave entre oleadas. El juego es completamente local, sin backend.
 
-Primera estructura: zona de monstruos, tres espacios de compañía y mazo de seis monstruos. Las partidas viven en memoria; no se conservan al recargar. Arte vectorial original incluido en `assets/`. Todavía no hay progresión entre combates, recompensas ni construcción de mazos.
+## Archivos
+
+- `index.html`: estructura y estilo arcade.
+- `arcade.js`: motor, controles, enemigos y progresión.
+
+La versión anterior de juego de cartas fue sustituida.
