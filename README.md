@@ -1,20 +1,18 @@
-# UMBRÍA · Commander Dungeon
+# UMBRÍA · Tactics
 
-Roguelike de cartas inspirado en los combates de Commander y la progresión de Slay the Spire. Estética retro pixel-art en crema, naranja y negro.
+Prototipo de RPG táctico por casillas con tablero isométrico de 7 × 7 y estética pixel art vintage.
 
 ## Jugar
 
 https://pablosierrasound-art.github.io/CardGame/
 
-## Reglas del prototipo
+## Controles
 
-- Dos comandantes enfrentados, cada uno con tres huecos para aliados y estructuras.
-- Empiezas con un mazo básico. Robas cuatro cartas cada turno; la mano se descarta al finalizarlo.
-- Tres puntos de energía por turno. Juega unidades en huecos, lanza hechizos y aplica mejoras a aliados.
-- Las unidades atacan en su columna. El daño sin bloqueador llega al comandante.
-- Al vencer, elige una de tres cartas para añadir al mazo; la siguiente sala será más difícil.
-- Un jefe cada cinco salas.
+Toca al héroe o al villano para seleccionarlo. Las casillas doradas indican los destinos a los que puede moverse (hasta tres casillas de distancia Manhattan). Toca una de ellas para desplazar al personaje con animación. Pulsa Reiniciar para devolver ambos a su posición original.
+
+Por ahora no hay combate, turnos automáticos ni habilidades: este prototipo está dedicado exclusivamente al tablero, los personajes y su movimiento.
 
 ## Archivos
 
-`index.html`: interfaz responsive. `commander.js`: lógica de combate, cartas, mazo y recompensas.
+- `index.html`: interfaz adaptable a móvil.
+- `tactics.js`: tablero isométrico, sprites pixel art y movimiento.
