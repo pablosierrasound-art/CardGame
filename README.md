@@ -1,6 +1,6 @@
-# UMBRÍA · Card Table 3D
+# UMBRÍA · Card Clash
 
-Prototipo de juego de cartas con tablero 3D y miniaturas low-poly, creado con Three.js.
+Prototipo 2D de cartas para móvil inspirado en la presentación de Balatro y Hearthstone. Dos comandantes, tres líneas enfrentadas y una mano de cuatro cartas.
 
 ## Jugar
 
@@ -8,16 +8,8 @@ https://pablosierrasound-art.github.io/CardGame/
 
 ## Reglas
 
-- Dos comandantes, tres posiciones para unidades por bando.
-- Mazo inicial de 12 cartas con goblins, guardias, caballeros, arqueros, torres, hechizos y estandartes.
-- Cuatro cartas por turno y tres puntos de energía.
-- Selecciona una carta de la mano flotante inferior y toca una casilla de tu lado para jugarla.
-- Los aliados atacan por su línea al terminar el turno. Los enemigos supervivientes contraatacan.
-- Los huecos sin bloqueadores permiten dañar al comandante rival.
-- Al finalizar el turno se descarta la mano y se roban cuatro cartas nuevas.
+Selecciona una carta y toca uno de tus tres huecos para jugarla. Las criaturas permanecen en su línea, las estructuras ocupan huecos y los hechizos tienen efecto inmediato. Tienes 3 puntos de energía por turno. Al finalizar el turno, cada unidad aliada ataca a su oponente de la misma columna o al comandante enemigo si no hay bloqueador. Después contraatacan las unidades enemigas. Se descarta la mano y robas cuatro cartas nuevas. Gana quien reduzca primero la vida del comandante rival a cero.
 
-## Tecnología
+## Archivos
 
-Three.js 0.170.0 mediante jsDelivr, WebGL y cámara ortográfica isométrica. Se necesita conexión a Internet para cargar la librería.
-
-Archivos: `index.html`, `cards3d.js`.
+`index.html` (interfaz 2D responsive) y `cardclash.js` (mazo, turnos y combate). Sin dependencias externas.
