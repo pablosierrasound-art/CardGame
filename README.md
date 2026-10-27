@@ -1,15 +1,18 @@
-# UMBRÍA · Dungeon Keeper
+# UMBRÍA · Dungeon Keeper 3D
 
-Prototipo móvil de tower defense en el que controlas al villano y proteges su tesoro de oleadas de aventureros.
+Tower defense 3D isométrico de fantasía retro para móvil. Construye defensas como señor de la mazmorra e impide que los aventureros alcancen el tesoro.
 
 Jugar: https://pablosierrasound-art.github.io/CardGame/
 
-## Cómo jugar
+## Motor gráfico
 
-1. Selecciona Goblin (40 de oro) o Esqueleto (60 de oro) y colócalo fuera del camino.
-2. Selecciona Trampa (30 de oro) y colócala en una casilla del camino.
-3. Pulsa Iniciar oleada para recibir a los aventureros.
-4. Tus defensas atacan automáticamente; recibes oro al derrotar enemigos y al superar oleadas.
-5. Vende defensas para recuperar parte de su coste. Defiende las 10 unidades de tesoro.
+Three.js 0.170.0, cargado mediante módulo ES desde jsDelivr. Renderizado WebGL, cámara ortográfica isométrica, geometrías low-poly, iluminación, sombras y personajes 3D construidos con primitivas. Requiere conexión a Internet para cargar Three.js.
 
-Estética retro con tablero cenital. Archivos: `index.html`, `dungeon.js`.
+## Controles
+
+Elige Goblin (40 oro), Esqueleto (60) o Trampa (30). Toca una casilla para construir: tropas fuera del camino, trampas sobre el camino. Inicia la oleada, gana oro al derrotar aventureros y vende defensas cuando necesites reorganizar la mazmorra. Pierdes si se agota el tesoro.
+
+## Archivos
+
+- `index.html`: interfaz móvil y HUD.
+- `dungeon3d.js`: escena Three.js, renderizado, interacción, unidades y oleadas.
