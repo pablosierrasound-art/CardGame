@@ -1,5 +1,5 @@
-import { createGame, draw, attack } from './game.js';
-let game = createGame();
+import { createRun, draw, attack, roomStatus, chooseReward } from './game.js';
+let game = createRun();
 const $ = s => document.querySelector(s);
 const log = text => { $('#log').textContent = text; };
 function card(c, index, enemy = false) {
@@ -8,9 +8,15 @@ function card(c, index, enemy = false) {
 function render() {
   $('#enemies').innerHTML = Array.from({ length: 3 }, (_, i) => game.enemies[i] ? card(game.enemies[i], i, true) : `<div class="empty-slot"><span>♱</span><small>SOMBRA ${['I', 'II', 'III'][i]}</small><p>Sin revelar</p></div>`).join('');
   $('#heroes').innerHTML = game.heroes.map((c,i) => card(c,i)).join('');
+  const status = roomStatus(game);
+  $('#room-label').textContent = `SALA ${Math.min(game.room, game.maxRooms)} / ${game.maxRooms}${game.room % 5 === 0 ? ' · JEFE' : ''}`;
+  $('#rewards').hidden = status !== 'reward';
+  $('#reveal').hidden = status !== 'battle';
+  $('#draw').hidden = status !== 'battle';
+  $('#reward-revive').disabled = !game.heroes.some(h => h.hp <= 0);
   $('#remaining').textContent = `${game.deck.length} CARTAS RESTANTES`;
   $('#enemy-count').textContent = `${game.enemies.length} / 3 ENEMIGOS`;
-  const disabled = !game.deck.length || game.enemies.length >= 3 || game.heroes.every(h => h.hp <= 0);
+  const disabled = status !== 'battle' || !game.deck.length || game.enemies.length >= 3 || game.heroes.every(h => h.hp <= 0);
   $('#draw').disabled = $('#reveal').disabled = disabled;
   document.querySelectorAll('[data-hero]').forEach(b => b.onclick = () => { game.selected = Number(b.dataset.hero); render(); log(`${game.heroes[game.selected].name} está preparado. Elige un enemigo.`); });
   document.querySelectorAll('[data-enemy]').forEach(b => b.onclick = () => {
@@ -18,11 +24,19 @@ function render() {
     if (!result) { log('Elige primero una carta de tu compañía.'); return; }
     render();
     log(result.killed ? `${result.enemy.name} ha caído.` : `${result.hero.name} inflige ${result.hero.attack} de daño y recibe ${result.enemy.attack} de contraataque.`);
-    if (!game.deck.length && !game.enemies.length) log('La cripta queda en silencio. Tu compañía ha vencido.');
+    if (roomStatus(game) === 'reward') log('Sala despejada. Elige una recompensa para continuar.');
     if (game.heroes.every(h => h.hp <= 0)) log('Tu compañía ha caído. Inicia una nueva incursión.');
   });
 }
 function reveal() { const enemy = draw(game); if (enemy) { render(); log(`${enemy.name} emerge de la oscuridad.`); } }
 $('#draw').onclick = $('#reveal').onclick = reveal;
-$('#restart').onclick = () => { game = createGame(); render(); log('Una nueva incursión comienza. Las sombras vuelven a esperar.'); };
+for (const kind of ['heal', 'power', 'revive']) {
+  $('#reward-' + kind).onclick = () => {
+    if (chooseReward(game, kind)) {
+      render();
+      log(`Avanzas a la sala ${game.room}. Las sombras se hacen más fuertes.`);
+    }
+  };
+}
+$('#restart').onclick = () => { game = createRun(); render(); log('Una nueva incursión comienza. Las sombras vuelven a esperar.'); };
 render();
