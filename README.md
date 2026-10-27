@@ -1,18 +1,23 @@
-# UMBRÍA · Dungeon Keeper 3D
+# UMBRÍA · Card Table 3D
 
-Tower defense 3D isométrico de fantasía retro para móvil. Construye defensas como señor de la mazmorra e impide que los aventureros alcancen el tesoro.
+Prototipo de juego de cartas con tablero 3D y miniaturas low-poly, creado con Three.js.
 
-Jugar: https://pablosierrasound-art.github.io/CardGame/
+## Jugar
 
-## Motor gráfico
+https://pablosierrasound-art.github.io/CardGame/
 
-Three.js 0.170.0, cargado mediante módulo ES desde jsDelivr. Renderizado WebGL, cámara ortográfica isométrica, geometrías low-poly, iluminación, sombras y personajes 3D construidos con primitivas. Requiere conexión a Internet para cargar Three.js.
+## Reglas
 
-## Controles
+- Dos comandantes, tres posiciones para unidades por bando.
+- Mazo inicial de 12 cartas con goblins, guardias, caballeros, arqueros, torres, hechizos y estandartes.
+- Cuatro cartas por turno y tres puntos de energía.
+- Selecciona una carta de la mano flotante inferior y toca una casilla de tu lado para jugarla.
+- Los aliados atacan por su línea al terminar el turno. Los enemigos supervivientes contraatacan.
+- Los huecos sin bloqueadores permiten dañar al comandante rival.
+- Al finalizar el turno se descarta la mano y se roban cuatro cartas nuevas.
 
-Elige Goblin (40 oro), Esqueleto (60) o Trampa (30). Toca una casilla para construir: tropas fuera del camino, trampas sobre el camino. Inicia la oleada, gana oro al derrotar aventureros y vende defensas cuando necesites reorganizar la mazmorra. Pierdes si se agota el tesoro.
+## Tecnología
 
-## Archivos
+Three.js 0.170.0 mediante jsDelivr, WebGL y cámara ortográfica isométrica. Se necesita conexión a Internet para cargar la librería.
 
-- `index.html`: interfaz móvil y HUD.
-- `dungeon3d.js`: escena Three.js, renderizado, interacción, unidades y oleadas.
+Archivos: `index.html`, `cards3d.js`.
