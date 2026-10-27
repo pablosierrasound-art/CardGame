@@ -1,24 +1,20 @@
-# UMBRÍA · Neon Invaders
+# UMBRÍA · Commander Dungeon
 
-Arcade roguelike de naves inspirado en los videojuegos de los años 90. Diseñado para móvil vertical, sin scroll y sin dependencias.
+Roguelike de cartas inspirado en los combates de Commander y la progresión de Slay the Spire. Estética retro pixel-art en crema, naranja y negro.
 
 ## Jugar
 
-Abre `index.html` en un navegador o visita https://pablosierrasound-art.github.io/CardGame/ cuando GitHub Pages esté desplegado.
+https://pablosierrasound-art.github.io/CardGame/
 
-## Controles
+## Reglas del prototipo
 
-- Móvil: arrastra la nave sobre la pantalla o usa los botones inferiores.
-- Ordenador: flechas izquierda/derecha o A/D.
-- Disparo automático. Botón de pausa en la parte superior.
-
-## Mecánicas
-
-Oleadas infinitas, jefe cada cinco oleadas, puntuación, récord personal guardado en el navegador y elección de una de tres mejoras para la nave entre oleadas. El juego es completamente local, sin backend.
+- Dos comandantes enfrentados, cada uno con tres huecos para aliados y estructuras.
+- Empiezas con un mazo básico. Robas cuatro cartas cada turno; la mano se descarta al finalizarlo.
+- Tres puntos de energía por turno. Juega unidades en huecos, lanza hechizos y aplica mejoras a aliados.
+- Las unidades atacan en su columna. El daño sin bloqueador llega al comandante.
+- Al vencer, elige una de tres cartas para añadir al mazo; la siguiente sala será más difícil.
+- Un jefe cada cinco salas.
 
 ## Archivos
 
-- `index.html`: estructura y estilo arcade.
-- `arcade.js`: motor, controles, enemigos y progresión.
-
-La versión anterior de juego de cartas fue sustituida.
+`index.html`: interfaz responsive. `commander.js`: lógica de combate, cartas, mazo y recompensas.
