@@ -1,4 +1,5 @@
 import Phaser from "phaser";
+import { installPixelPack } from "../art/pixelPack.js";
 
 const CELL = 46, X = 40, Y = 98;
 const MAP = [
@@ -29,8 +30,11 @@ export class BootScene extends Phaser.Scene {
  constructor(){super("BootScene");}
  create(){
   this.cameras.main.setBackgroundColor("#10141e");
+  installPixelPack(this);
   this.gold=120;this.treasure=10;this.wave=0;this.kills=0;this.selected="skeleton";this.units=[];this.foes=[];this.shots=[];this.running=false;this.spawnLeft=0;this.spawnTimer=0;this.elapsed=0;
-  this.add.text(40,20,"DUNGEON KEEPER  TD",{fontFamily:"monospace",fontSize:"27px",color:"#e7c887",fontStyle:"bold"});
+  this.add.rectangle(480,43,960,86,0x1d2530);
+  this.add.text(40,16,"DUNGEON KEEPER  TD",{fontFamily:"monospace",fontSize:"27px",color:"#e7c887",fontStyle:"bold"});
+  this.add.text(40,46,"EL SEÑOR DE LA MAZMORRA",{fontFamily:"monospace",fontSize:"12px",color:"#9da9a9"});
   this.stats=this.add.text(42,62,"",{fontFamily:"monospace",fontSize:"17px",color:"#e9e3d5"});
   const g=this.add.graphics();
   for(let y=0;y<MAP.length;y++)for(let x=0;x<MAP[y].length;x++){
@@ -42,8 +46,9 @@ export class BootScene extends Phaser.Scene {
   }
   const start=route[0],end=route[route.length-1];
   this.add.text(X+(start[0]+.5)*CELL,Y+(start[1]+.5)*CELL,"⚔",{fontSize:"27px"}).setOrigin(.5);
-  this.add.text(X+(end[0]+.5)*CELL,Y+(end[1]+.5)*CELL,"💎",{fontSize:"28px"}).setOrigin(.5);
+  this.add.image(X+(end[0]+.5)*CELL,Y+(end[1]+.5)*CELL,"px-chest").setDisplaySize(39,39).setDepth(3);
   this.ui=[];
+  this.add.rectangle(845,318,224,435,0x202938).setStrokeStyle(2,0x4c5969);
   this.add.text(755,108,"DEFENSAS",{fontFamily:"monospace",fontSize:"21px",color:"#e7c887"});
   let iy=153;
   for(const [key,d] of Object.entries(defs)){
@@ -63,8 +68,8 @@ export class BootScene extends Phaser.Scene {
    const d=defs[this.selected];if(this.gold<d.price)return;
    this.gold-=d.price;
    const cx=X+(x+.5)*CELL,cy=Y+(y+.5)*CELL;
-   const circle=this.add.circle(cx,cy,17,d.color).setStrokeStyle(3,0x1b2028);
-   const symbol=this.add.text(cx,cy,d.symbol,{fontFamily:"monospace",fontSize:"22px",color:"#15202b"}).setOrigin(.5);
+   const circle=this.add.image(cx,cy,"px-"+this.selected).setDisplaySize(37,37).setDepth(4);
+   const symbol=null;
    this.units.push({x,y,cx,cy,key:this.selected,last:0,circle,symbol});this.updateUI();
   });
   this.updateUI();
@@ -83,8 +88,8 @@ export class BootScene extends Phaser.Scene {
   const kind=Math.random()<.23?"mage":Math.random()<.45?"archer":"warrior";
   const colors={warrior:0x6fa9dd,archer:0xd1a36b,mage:0xb58ae0};
   const cx=X+(route[0][0]+.5)*CELL,cy=Y+(route[0][1]+.5)*CELL;
-  const body=this.add.rectangle(cx,cy,22,26,colors[kind]).setStrokeStyle(3,0x202633);
-  const head=this.add.circle(cx,cy-9,7,0xe5c6a0).setStrokeStyle(1,0x34313c);
+  const body=this.add.image(cx,cy,"px-"+kind).setDisplaySize(37,37).setDepth(5);
+  const head=this.add.circle(cx,cy-9,1,0xe5c6a0).setAlpha(0);
   const hp=this.add.rectangle(cx,cy-20,27,4,0x76d778);
   this.foes.push({kind,body,head,hp,progress:0,health:45+this.wave*12,max:45+this.wave*12,speed:(kind==="archer"?1.03:kind==="mage"?.85:1.16)*(1+this.wave*.025)});
  }
