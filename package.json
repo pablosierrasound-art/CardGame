@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predev": "python3 scripts/fetch_kenney.py",
+    "prebuild": "python3 scripts/fetch_kenney.py"
   },
   "dependencies": {
     "phaser": "^3.90.0"
