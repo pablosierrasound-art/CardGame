@@ -28,6 +28,7 @@ trap:{name:"Pinchos",price:25,range:0.8,damage:21,rate:1000,color:0xd9a56c,symbo
 };
 export class BootScene extends Phaser.Scene {
  constructor(){super("BootScene");}
+ preload(){this.load.spritesheet("kenney-dungeon",import.meta.env.BASE_URL+"kenney/tilemap_packed.png",{frameWidth:16,frameHeight:16});}
  create(){
   this.cameras.main.setBackgroundColor("#10141e");
   installPixelPack(this);
@@ -37,16 +38,18 @@ export class BootScene extends Phaser.Scene {
   this.add.text(40,46,"EL SEÑOR DE LA MAZMORRA",{fontFamily:"monospace",fontSize:"12px",color:"#9da9a9"});
   this.stats=this.add.text(42,62,"",{fontFamily:"monospace",fontSize:"17px",color:"#e9e3d5"});
   const g=this.add.graphics();
+  const tileFrames=this.textures.exists("kenney-dungeon");
   for(let y=0;y<MAP.length;y++)for(let x=0;x<MAP[y].length;x++){
    const wall=MAP[y][x]==="#", px=X+x*CELL,py=Y+y*CELL;
    g.fillStyle(wall?0x333a49:0x65584e);g.fillRect(px,py,CELL-1,CELL-1);
    g.fillStyle(wall?0x454e60:0x766759);g.fillRect(px+3,py+3,CELL-7,wall?7:2);
    if(wall){g.lineStyle(1,0x222a36);g.strokeRect(px+2,py+2,CELL-5,CELL-5);}
+   if(tileFrames){const frame=wall?((x+y)%4===0?13:1):((x+y)%4===0?3:0);this.add.image(px+CELL/2,py+CELL/2,"kenney-dungeon",frame).setDisplaySize(CELL-1,CELL-1).setDepth(0).setTexture("kenney-dungeon",frame); }
    else if((x+y)%3===0){g.fillStyle(0x867766);g.fillRect(px+11,py+22,3,3);}
   }
   const start=route[0],end=route[route.length-1];
   this.add.text(X+(start[0]+.5)*CELL,Y+(start[1]+.5)*CELL,"⚔",{fontSize:"27px"}).setOrigin(.5);
-  this.add.image(X+(end[0]+.5)*CELL,Y+(end[1]+.5)*CELL,"px-chest").setDisplaySize(39,39).setDepth(3);
+  this.add.image(X+(end[0]+.5)*CELL,Y+(end[1]+.5)*CELL,tileFrames?"kenney-dungeon":"px-chest",tileFrames?84:undefined).setDisplaySize(39,39).setDepth(3);
   this.ui=[];
   this.add.rectangle(845,318,224,435,0x202938).setStrokeStyle(2,0x4c5969);
   this.add.text(755,108,"DEFENSAS",{fontFamily:"monospace",fontSize:"21px",color:"#e7c887"});
